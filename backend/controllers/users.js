@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 
 const getUsers = (req, res) => {
@@ -30,7 +31,8 @@ const createUser = (req, res) => {
     if (user) {
       return res.status(409).send({ message: 'Пользователь уже зарегистрирован' });
     }
-    return User.create({ email, password })
+    return bcrypt.hash(password, 10)
+      .then((hash) => User.create({ email, password: hash }))
       .then((data) => res.send(data))
       .catch((err) => {
         if (err.name === 'ValidationError') return res.status(400).send({ message: 'Некорректные данные пользователя' });
