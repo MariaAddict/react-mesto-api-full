@@ -101,4 +101,5 @@ module.exports = {
   updateProfile,
   updateAvatar,
   login,
+  JWT_SECRET,
 };
