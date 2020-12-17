@@ -24,12 +24,20 @@ const getUser = (req, res) => {
     });
 };
 
-const createUser = (req, res) => User.create({ ...req.body })
-  .then((user) => res.send(user))
-  .catch((err) => {
-    if (err.name === 'ValidationError') return res.status(400).send({ message: 'Некорректные данные пользователя' });
-    return res.status(500).send({ message: 'Ошибка на сервере' });
+const createUser = (req, res) => {
+  const { email, password } = req.body;
+  User.findOne({ email }).then((user) => {
+    if (user) {
+      return res.status(409).send({ message: 'Пользователь уже зарегистрирован' });
+    }
+    return User.create({ email, password })
+      .then((data) => res.send(data))
+      .catch((err) => {
+        if (err.name === 'ValidationError') return res.status(400).send({ message: 'Некорректные данные пользователя' });
+        return res.status(500).send({ message: 'Ошибка на сервере' });
+      });
   });
+};
 
 const updateProfile = (req, res) => {
   const { name, about } = req.body;
