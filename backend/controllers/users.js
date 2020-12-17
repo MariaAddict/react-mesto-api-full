@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = require('crypto').randomBytes(32).toString('hex');
 const User = require('../models/user');
 
 const getUsers = (req, res) => {
@@ -69,10 +71,34 @@ const updateAvatar = (req, res) => {
     });
 };
 
+const login = (req, res) => {
+  const { email, password } = req.body;
+
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        res.status(401).send({ message: 'Некорректные данные пользователя' });
+      }
+
+      return bcrypt.compare(password, user.password)
+        .then((matched) => {
+          if (!matched) {
+            return res.status(401).send({ message: 'Некорректные данные пользователя' });
+          }
+          const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+          return res.send({ token });
+        });
+    })
+    .catch((err) => {
+      res.status(400).send({ message: err.message });
+    });
+};
+
 module.exports = {
   getUsers,
   getUser,
   createUser,
   updateProfile,
   updateAvatar,
+  login,
 };
