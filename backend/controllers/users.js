@@ -94,6 +94,24 @@ const login = (req, res) => {
     });
 };
 
+const getUserData = (req, res) => User.findById(req.user._id)
+  .then((data) => {
+    if (!data) {
+      return res.status(404).send({ message: 'Нет пользователя' });
+    }
+    return res.send({
+      _id: data._id,
+      about: data.about,
+      avatar: data.avatar,
+      name: data.name,
+      email: data.email,
+    });
+  })
+  .catch((err) => {
+    if (err.name === 'CastError') return res.status(404).send({ message: 'Пользователь не найден' });
+    return res.status(500).send({ message: 'Ошибка на сервере' });
+  });
+
 module.exports = {
   getUsers,
   getUser,
@@ -101,5 +119,6 @@ module.exports = {
   updateProfile,
   updateAvatar,
   login,
+  getUserData,
   JWT_SECRET,
 };
