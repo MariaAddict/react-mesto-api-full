@@ -1,0 +1,17 @@
+@import url(./__title/login__title.css);
+@import url(./__form/login__form.css);
+@import url(./__input/login__input.css);
+@import url(./__submit-button/login__submit-button.css);
+@import url(./__link/login__link.css);
+
+.login {
+    max-width: 358px;
+    /* min-width: 300px; */
+    padding-top: 60px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+}

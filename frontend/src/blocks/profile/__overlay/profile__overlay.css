@@ -1,0 +1,38 @@
+.profile__overlay {
+    width: 120px;
+    height: 120px;
+    margin: 0;
+    position: relative; 
+}
+
+.profile__overlay::before { 
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background-color: rgba(0,0,0,.8);;  
+    opacity: 0; 
+}
+
+.profile__overlay::after {
+    content: ''; 
+    position: absolute;
+    top: 47px; 
+    left: 47px; 
+    right: 47px; 
+    bottom: 47px; 
+    background: url(../../../images/edit-pen.svg);
+    opacity: 0; 
+}
+
+.profile__overlay:hover::after {
+    opacity: 1;
+    transition: 0.3s opacity ease;
+}
+
+.profile__overlay:hover::before {
+    opacity: 1;
+    transition: 0.5s opacity linear;
+}

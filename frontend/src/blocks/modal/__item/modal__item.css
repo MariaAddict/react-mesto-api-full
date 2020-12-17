@@ -1,0 +1,22 @@
+.modal__item {
+    width: 100%;
+    min-height: 24px;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: transparent;
+    margin-bottom: 5px;  
+    margin-top: 25px;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.modal__item:first-of-type {
+    margin-top: 0;
+}
+
+.modal__item:focus {
+    outline-color: blue;
+    border: 1px solid blue;
+    box-shadow: 1px 1px 1px 0 blue;
+}
+

@@ -1,0 +1,11 @@
+.modal__save-button_disabled {
+    background: #FFF;
+    border: 1px solid #000000;
+    border-radius: 2px;
+    color: #000;
+    opacity: 0.2;
+}
+
+.modal__save-button_disabled:hover {
+    opacity: 0.2;
+}

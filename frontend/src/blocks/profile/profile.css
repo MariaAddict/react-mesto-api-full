@@ -1,0 +1,20 @@
+@import url(./__overlay/profile__overlay.css);
+@import url(./__image/profile__image.css);
+@import url(./__info/profile__info.css);
+@import url(./__name/profile__name.css);
+@import url(./__activity-type/profile__activity-type.css);
+@import url(./__info-button/profile__info-button.css);
+@import url(./__add-button/profile__add-button.css);
+
+.profile {
+    width: 100%;
+    margin: 51px 0 40px;
+    display: flex;
+}
+
+@media screen and (max-width: 480px) {
+    .profile {
+      margin: 38px 0 36px;
+      flex-direction: column;
+    }
+}

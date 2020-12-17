@@ -1,0 +1,5 @@
+.card__like_pressed {
+    background-image: url(../../../../images/like_pressed.svg);
+    min-height: 18.13px;
+    min-width: 20.76px;
+}

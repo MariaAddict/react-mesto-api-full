@@ -1,0 +1,29 @@
+.cards__image {
+    width: 100%;
+    height: 282px;
+    object-fit: cover;
+    object-position: center;
+    box-sizing: border-box;
+}
+
+.cards__image:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .cards__image {
+        height: 240px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .cards__image {
+        height: 210px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cards__image {
+        height: 282px;
+    }
+}

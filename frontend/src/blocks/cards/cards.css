@@ -1,0 +1,32 @@
+@import url(./__item/cards__item.css);
+@import url(./__image/cards__image.css);
+@import url(./__description/cards__description.css);
+@import url(./__title/cards__title.css);
+@import url(./__like/cards__like.css);
+@import url(./__like/_pressed/card__like_pressed.css);
+@import url(./__delete/cards__delete.css);
+@import url(./__delete/_hidden/cards__delete_hidden.css);
+@import url(./__number-of-likes/cards__number-of-likes.css);
+.cards {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));*/
+    gap: 21px 18px;
+    justify-items: center;
+}
+
+@media screen and (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cards {
+        gap: 20px 0;
+        grid-template-columns: 1fr;
+    }
+}

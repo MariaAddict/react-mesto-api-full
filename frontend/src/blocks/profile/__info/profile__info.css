@@ -1,0 +1,23 @@
+.profile__info {
+    margin-left: 30px;
+    display: grid;
+    grid-template-columns: fit-content(475px) 24px;
+    grid-template-rows: repeat(2, min-content);
+    gap: 16px 17px;
+    align-self: center;
+    align-items: baseline;
+}
+
+@media screen and (max-width: 960px) {
+    .profile__info {
+        margin-left: 20px;
+        gap: 15px 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile__info {
+        gap: 0 8px; /*0 - так как отступ у надписи 14px*/
+        margin: 0 auto 36px;
+    }
+}

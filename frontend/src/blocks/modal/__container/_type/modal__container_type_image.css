@@ -1,0 +1,16 @@
+.modal__container_type_image {
+    max-width: 95%;
+    max-height: calc(100% - 2*90px);
+    border-radius: 0;
+    padding: 0;
+    margin: 90px auto;
+    background-color: transparent;
+    box-sizing: border-box;
+    align-self: center;
+}
+
+@media screen and (max-width: 480px) {
+    .modal__container_type_image {
+        margin: 40px;
+    }
+}
