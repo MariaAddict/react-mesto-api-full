@@ -20,7 +20,7 @@ function App() {
     const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = React.useState(false);
     const [selectedCard, setSelectedCard] = React.useState({});
-    const [currentUser, setCurrentUser] = React.useState({ about: '', avatar: '', cohort: '', name: '', _id: '' });
+    const [currentUser, setCurrentUser] = React.useState({ about: '', avatar: '', email: '', name: '', _id: '' });
     const [cards, setCards] = React.useState([]);
     const [headerLink, setHeaderLink] = React.useState({
         name: '',
@@ -34,13 +34,15 @@ function App() {
     const [email, setEmail] = React.useState('');
 
     React.useEffect(() => {
+        if (location.pathname === '/') {
         Promise.all([api.getUserInfo(), api.getInitialCards()]).then(([dataUser, dataCards]) => {
             setCurrentUser(dataUser);
             setCards(dataCards);
         }).catch(err => {
             console.log(err);
         });
-    }, []);
+    }
+    }, [location]);
 
     React.useEffect(() => {
         if (location.pathname === '/sign-in') {
@@ -106,7 +108,7 @@ function App() {
     }
 
     function handleCardLike(card) {
-        const isLiked = card.likes.some((i) => i._id === currentUser._id);
+        const isLiked = card.likes.some((i) => i === currentUser._id);
 
         api.changeLike(card._id, !isLiked).then((newCard) => {
             const newCards = cards.map((c) => c._id === card._id ? newCard : c);
@@ -118,7 +120,9 @@ function App() {
 
     function handleCardDelete(card) {
         api.deleteCard(card._id).then(() => {
-            const newCards = cards.filter((c) => !(c._id === card._id));
+            const newCards = cards.filter((c) => {
+                return !(c._id === card._id)
+            });
             setCards(newCards);
         }).catch(err => {
             console.log(err);
@@ -171,13 +175,11 @@ function App() {
         auth.getContent(jwt)
             .then(data => {
                 if (data) {
-                    console.log('check token data IF: ', data);
-                    setEmail(data.data.email);
+                    setEmail(data.email);
                     setLoggetIn(true);
                     history.push('/');
                 }
                 else {
-                    console.log('check token data ELSE: ', data);
                     history.push('/sign-in');
                 }
             })

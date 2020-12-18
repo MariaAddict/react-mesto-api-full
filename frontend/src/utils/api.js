@@ -56,7 +56,7 @@ class Api {
     }
 
     changeLike(cardId, like) {
-        return fetch(`${this._url}cards/likes/${cardId}`, {
+        return fetch(`${this._url}cards/${cardId}/likes`, {
             method: like ? 'PUT' : 'DELETE',
             headers: this._headers
         }
@@ -80,10 +80,10 @@ class Api {
 }
 
 //создание api
-const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/', {
+const api = new Api('http://api.mortany.students.nomoredomains.monster/', {
     headers: {
         'Content-Type': 'application/json',
-        authorization: 'e7e08b6b-adf3-43f0-9ed1-13df27223916'
+        authorization: `Bearer ${localStorage.getItem('jwt')}`
     }
 });
 

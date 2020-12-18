@@ -1,4 +1,4 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = "http://api.mortany.students.nomoredomains.monster";
 
 export const register = (password, email) => {
     return fetch(`${BASE_URL}/signup`, {
@@ -6,7 +6,7 @@ export const register = (password, email) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ password, email })
+        body: JSON.stringify({ email, password  })
     })
         .then((response) => response.ok ? response.json() : Promise.reject(`ошибка: ${response.status}`));
 };
@@ -23,7 +23,7 @@ export const authorization = (password, email) => {
 };
 
 export const getContent = (jwt) => {
-    return fetch(`${BASE_URL}/users/me`, {
+    return fetch(`${BASE_URL}/users/me/`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
