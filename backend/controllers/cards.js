@@ -25,10 +25,12 @@ const deleteCard = (req, res) => {
   Card.findByIdAndRemove(req.params.id)
     .then((card) => {
       if (!card) {
-        res.status(404).send({ message: 'Карточка не найдена' });
-        return;
+        return res.status(404).send({ message: 'Карточка не найдена' });
       }
-      res.send(card);
+      if (card.owner === req.user._id) {
+        return res.send(card);
+      }
+      return res.status(403).send({ message: 'Вы не можете удалить карточку другого пользователя' });
     })
     .catch((err) => {
       if (err.name === 'CastError') return res.status(404).send({ message: 'Карточка не найдена' });
