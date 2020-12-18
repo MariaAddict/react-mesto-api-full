@@ -34,7 +34,7 @@ function App() {
     const [email, setEmail] = React.useState('');
 
     React.useEffect(() => {
-        if (location.pathname === '/') {
+        if (loggedIn) {
         Promise.all([api.getUserInfo(), api.getInitialCards()]).then(([dataUser, dataCards]) => {
             setCurrentUser(dataUser);
             setCards(dataCards);
@@ -42,7 +42,7 @@ function App() {
             console.log(err);
         });
     }
-    }, [location]);
+    }, [loggedIn]);
 
     React.useEffect(() => {
         if (location.pathname === '/sign-in') {
@@ -139,7 +139,6 @@ function App() {
     }
 
     function handleRegister(password, email) {
-        console.log("user: ", password, email);
         auth.register(password, email)
             .then(data => {
                 console.log(data);
