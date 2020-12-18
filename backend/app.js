@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const { errors } = require('celebrate');
 
 const { PORT = 3000 } = process.env;
 
@@ -30,6 +31,8 @@ app.use('/', cardsRouter);
 app.use('*', (req, res) => {
   res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
 });
+
+app.use(errors());
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
