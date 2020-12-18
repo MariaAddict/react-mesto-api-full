@@ -9,6 +9,7 @@ const usersRouter = require('./routes/users.js');
 const cardsRouter = require('./routes/cards.js');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 mongoose.connect('mongodb://localhost:27017/mestodb', {
@@ -19,6 +20,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(requestLogger);
 
 app.post('/signin', login);
 app.post('/signup', createUser);
@@ -32,6 +35,7 @@ app.use('*', (req, res) => {
   res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
 });
 
+app.use(errorLogger);
 app.use(errors());
 
 app.listen(PORT, () => {
