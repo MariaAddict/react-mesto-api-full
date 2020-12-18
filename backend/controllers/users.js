@@ -74,7 +74,7 @@ const updateAvatar = (req, res) => {
 const login = (req, res) => {
   const { email, password } = req.body;
 
-  User.findOne({ email })
+  User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
         res.status(401).send({ message: 'Некорректные данные пользователя' });
@@ -97,15 +97,9 @@ const login = (req, res) => {
 const getUserData = (req, res) => User.findById(req.user._id)
   .then((data) => {
     if (!data) {
-      return res.status(404).send({ message: 'Нет пользователя' });
+      return res.status(404).send({ message: 'Пользователь не найден' });
     }
-    return res.send({
-      _id: data._id,
-      about: data.about,
-      avatar: data.avatar,
-      name: data.name,
-      email: data.email,
-    });
+    return res.send(data);
   })
   .catch((err) => {
     if (err.name === 'CastError') return res.status(404).send({ message: 'Пользователь не найден' });
