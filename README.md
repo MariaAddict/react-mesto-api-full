@@ -2,4 +2,4 @@
 
 [Посмотреть проект](http://mortany.students.nomoredomains.monster/ "Добро пожаловать")
 
-[http://178.154.228.69]
+[ip-адресс](http://178.154.228.69)
