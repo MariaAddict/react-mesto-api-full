@@ -3,7 +3,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
-import api from '../utils/api';
+import Api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -33,8 +33,17 @@ function App() {
     const history = useHistory();
     const [email, setEmail] = React.useState('');
 
+    //создание api
+    const api = new Api('http://api.mortany.students.nomoredomains.monster/', {
+        headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        }
+    });
+
     React.useEffect(() => {
-        if (loggedIn) {
+        const isToken = (localStorage.getItem('jwt') !== null);
+        if (isToken && loggedIn) {
         Promise.all([api.getUserInfo(), api.getInitialCards()]).then(([dataUser, dataCards]) => {
             setCurrentUser(dataUser);
             setCards(dataCards);
@@ -42,7 +51,9 @@ function App() {
             console.log(err);
         });
     }
-    }, [loggedIn]);
+    }, [loggedIn, localStorage.getItem('jwt')]);
+
+    
 
     React.useEffect(() => {
         if (location.pathname === '/sign-in') {

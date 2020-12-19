@@ -79,12 +79,5 @@ class Api {
     }
 }
 
-//создание api
-const api = new Api('http://api.mortany.students.nomoredomains.monster/', {
-    headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem('jwt')}`
-    }
-});
 
-export default api;
+export default Api;
