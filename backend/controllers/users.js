@@ -40,7 +40,9 @@ const getUser = (req, res, next) => {
 };
 
 const createUser = (req, res, next) => {
-  const { email, password } = req.body;
+  const {
+    email, password, name, about, avatar,
+  } = req.body;
 
   if (!email || !password) {
     const err = new Error('Некорректные данные пользователя');
@@ -55,7 +57,9 @@ const createUser = (req, res, next) => {
       return next(err);
     }
     return bcrypt.hash(password, 10)
-      .then((hash) => User.create({ email, password: hash }))
+      .then((hash) => User.create({
+        email, password: hash, name, about, avatar,
+      }))
       .then((data) => res.send(data))
       .catch((err) => {
         if (err.name === 'ValidationError') {
