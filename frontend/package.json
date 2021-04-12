@@ -16,7 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./build/* _mortany_27@178.154.228.69:/home/_mortany_27/news-frontend",
+    "deploy": "npm run build && scp -r ./build/* _mortany_27@84.252.128.89:/home/_mortany_27/news-frontend",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
