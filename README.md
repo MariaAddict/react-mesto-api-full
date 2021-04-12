@@ -5,5 +5,6 @@
 _К предыдущим версиям проекта добавлено взаимодействие с собственным API, деплой проекта, загрузка на виртуальную машину_
 
 #### Ссылки на проект:
-[Посмотреть проект](http://mortany.students.nomoredomains.monster/ "Добро пожаловать")  
-[Сервер](http://api.mortany.students.nomoredomains.monster/)
+[Посмотреть проект](http://mesto.mortany.ru/ "Добро пожаловать")  
+[Сервер](http://api.mesto.mortany.ru/)
+
