@@ -1,8 +1,9 @@
 # react-mesto-api-full
 
-[Посмотреть проект](http://mortany.students.nomoredomains.monster/ "Добро пожаловать")
+**Проект представляет собой фронтенд и бэкенд части Mesto:** https://github.com/MariaAddict/react-mesto-auth и https://github.com/MariaAddict/express-mesto
 
-[ip-адресс](http://178.154.228.69)  
+_К предыдущим версиям проекта добавлено взаимодействие с собственным API, деплой проекта, загрузка на виртуальную машину_
 
-_Доменное имя сервера:_
-(http://api.mortany.students.nomoredomains.monster/)
+#### Ссылки на проект:
+[Посмотреть проект](http://mortany.students.nomoredomains.monster/ "Добро пожаловать")  
+[Сервер](http://api.mortany.students.nomoredomains.monster/)
