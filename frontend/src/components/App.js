@@ -34,7 +34,7 @@ function App() {
     const [email, setEmail] = React.useState('');
 
     //создание api
-    const api = new Api('http://api.mortany.students.nomoredomains.monster/', {
+    const api = new Api('http://api.mesto.mortany.ru/', {
         headers: {
             'Content-Type': 'application/json',
             authorization: `Bearer ${localStorage.getItem('jwt')}`,

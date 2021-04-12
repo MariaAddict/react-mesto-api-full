@@ -1,4 +1,4 @@
-export const BASE_URL = "http://api.mortany.students.nomoredomains.monster";
+export const BASE_URL = "http://api.mesto.mortany.ru";
 
 export const register = (password, email) => {
     return fetch(`${BASE_URL}/signup`, {
